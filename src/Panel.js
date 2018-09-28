@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import App from './App';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import FormApi from './components/forms/form'
-import Categoria from './components/categoria/CategoriaComponent';
+import Categoria from './components/categoria/ListCategoriaComponent';
 import { Layout, Menu, Icon } from 'antd';
 import { Button } from 'antd/lib/radio';
 import './assets/css/Panel.css';

@@ -6,12 +6,12 @@ import '../../assets/css/global.css';
 
 const columns = [{
     title: 'Categoria',
-    dataIndex: 'Categoria',
-    key: 'category'
+    dataIndex: 'name',
+    key: '_id'
 }, {
     title: 'Ação',
     key: 'action',
-    render: (text, record) => (
+    render: (text) => (
         <span>
             <a href="javascript:;"><Icon type="edit"/></a>
             <Divider type="vertical" />
@@ -23,7 +23,7 @@ const columns = [{
 class Categoria extends Component {
 
     state = {
-        dataSource: []
+        categorys: []
     }
 
     constructor(props){
@@ -35,10 +35,9 @@ class Categoria extends Component {
         fetch('http://localhost:4000/category')
             .then(res => res.json())
             .then(categorys => {
-                console.log(categorys)
                 this.setState(() => {
                     return {
-                        dataSource: categorys
+                        categorys: categorys
                     }
                 })
             })
@@ -60,8 +59,7 @@ class Categoria extends Component {
                         </Col>
                     </Row>
                 </div>
-
-                <Table columns={columns} dataSource={this.state.dataSource}/>
+                <Table columns={columns} dataSource={this.state.categorys}/>
             </div>
             
         )

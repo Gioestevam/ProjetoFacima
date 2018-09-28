@@ -51,7 +51,7 @@ class App extends Component {
   }
   
   renderCard(book, key){
-    console.log(book)
+    console.log(book, 1)
     return (
       <Card
       key={key}
