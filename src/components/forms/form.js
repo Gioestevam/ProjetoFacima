@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Select, message } from "antd"
+
 class FormApi extends Component {
     state = {
         form: {
@@ -7,13 +8,11 @@ class FormApi extends Component {
             image: "",
             category: ""
         },
-        valores: [
-            {label: "Ficção", value: "Ficção"}
-        ]
+        categorys: []
     }
+
     constructor(props){
         super(props)
-
         console.log(props)
         if(this.props.hasOwnProperty('url_props')){
             this.getById(this.props.url_props.match.params.id)
@@ -32,6 +31,17 @@ class FormApi extends Component {
             })
     }
 
+    componentDidMount() {
+        fetch('http://localhost:4000/category')
+            .then(res => {
+                return res.json();
+            })
+            .then(json => {
+                this.setState({
+                    categorys: json
+                })
+            });
+    }
     render() {
         return (<div>
                <Form onSubmit={(event) => this.saveBook(event)}>
@@ -43,10 +53,11 @@ class FormApi extends Component {
                        <Input value={this.state.form.image} required onChange={event => this.updateValue('image', event.target.value)} placeholder="Imagem"/>
                    </Form.Item>
                    <Form.Item>
+                        
                        <Select value={this.state.form.category} onChange={valor => this.updateValue('category', valor)}>
                             <Select.Option value="">Selecione...</Select.Option>
-                           {this.state.valores.map((item, index) => {
-                               return <Select.Option key={index} value={item.value}>{item.label}</Select.Option>
+                           {this.state.categorys.map((item, index) => {
+                               return <Select.Option key={index} value={item.value}>{item.name}</Select.Option>
                            })}
                        </Select>
                    </Form.Item>

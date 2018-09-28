@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './assets/css/App.css';
 import { Input, Icon, Modal} from 'antd'
 import { Link } from 'react-router-dom'
 import { Card } from 'antd';
